@@ -48,7 +48,8 @@
         isShowBackTop:false,
         tabOffsetTop:0,
         isTabFixed:false,
-        savey:0
+        savey:0,
+        commentInfo:{}
       }
     },
     activated() {
@@ -59,7 +60,9 @@
       this.savey=this.$refs.scroll.getScrollY()
     },
     mounted() {
+
       const refresh=debounce(this.$refs.scroll.refresh,50)
+
       this.$bus.$on('itemimageLoad',()=>{
          refresh()
       })
@@ -102,7 +105,7 @@
         this.$refs.taControl1.reindex=index
       },
       backClick(){
-        this.$refs.scroll.scrollTo(0,0)
+        this.$refs.scroll.scrollTo(0,0,500)
       },
       //网络请求
       getHomeMultidata(){
@@ -130,7 +133,7 @@
         this.getHomeGoods(this.currentType)
       },
       swiperImageLoad(){
-        console.log(this.tabOffsetTop=this.$refs.taControl2.$el.offsetTop);
+       this.tabOffsetTop=this.$refs.taControl2.$el.offsetTop
       }
     }
 

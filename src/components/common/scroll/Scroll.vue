@@ -47,7 +47,7 @@
 
     },
     methods:{
-      scrollTo(x,y,time=500){
+      scrollTo(x,y,time){
         this.scroll.scrollTo(x,y,time)
       },
       finishPullUp(){

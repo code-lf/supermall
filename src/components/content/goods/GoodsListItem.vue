@@ -1,6 +1,6 @@
 <template>
 <div class="goods-item" @click="itemClick">
-  <img :src="goodsItem.show.img" @load="imageLoad">
+  <img v-lazy="shouImage" @load="imageLoad">
   <div class="goods-info">
     <p>{{goodsItem.title}}</p>
     <span class="price">¥{{goodsItem.price}}</span>
@@ -20,9 +20,20 @@
        }
       }
     },
+    computed:{
+      shouImage(){
+        return this.goodsItem.image || this.goodsItem.show.img
+      }
+    },
     methods:{
       imageLoad(){
-        this.$bus.$emit('itemimageLoad')
+        // if (this.$route.path.indexOf('/home')){
+          this.$bus.$emit('itemimageLoad')
+        // }else if ((this.$route.path.indexOf('/home'))){
+        //   this.$bus.$emit('datailLoad')
+        // }
+
+
       },
       itemClick(){
         this.$router.push('/detail'+this.goodsItem.iid)

@@ -13,13 +13,18 @@
 
 <script>
   import NavBar from "components/common/navbar/NavBar";
+
   export default {
     name: "DetailNavBar",
     data(){
       return{
         titles:['商品','参数','评论','推荐'],
-        currentIndex:0
+        currentIndex:0,
+
       }
+    },
+    props:{
+      barid:Number
     },
     components:{
       NavBar
@@ -27,6 +32,7 @@
     methods:{
       titleClick(index){
         this.currentIndex=index
+        this.$emit('titleClick',index)
       },
       back(){
         this.$router.back()
